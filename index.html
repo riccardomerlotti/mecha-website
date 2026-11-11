@@ -5,33 +5,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>MECHA</title>
   <meta name="description" content="MECHA = Studio + Riso Print + Darkroom + Gunpla Collection. Based in Legnano (MI). WIP Website.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="preload" href="fonts/michroma-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-  <!-- Filtri "grunge": il testo resta testo, selezionabile e indicizzabile -->
+  <!-- Effetto ink.
+       Ritocco: DISPLACE = ruvidità dei bordi, SOGLIA = quanti "buchini". -->
   <svg class="svg-defs" aria-hidden="true" focusable="false">
     <defs>
-      <filter id="grunge-title" x="-5%" y="-10%" width="110%" height="120%" color-interpolation-filters="sRGB">
-        <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" seed="294" result="noise"/>
-        <feDisplacementMap in="SourceGraphic" in2="noise" scale="0.9" xChannelSelector="R" yChannelSelector="G"/>
+      <filter id="ink-title" x="-5%" y="-10%" width="110%" height="120%" color-interpolation-filters="sRGB">
+        <feTurbulence type="fractalNoise" baseFrequency="0.5" numOctaves="3" seed="7" result="n1"/>
+        <feDisplacementMap in="SourceGraphic" in2="n1" scale="1.1" xChannelSelector="R" yChannelSelector="G" result="d"/><!-- DISPLACE -->
+        <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="11" result="n2"/>
+        <feColorMatrix in="n2" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  22 0 0 0 -15.6" result="holes"/><!-- SOGLIA -->
+        <feComposite in="d" in2="holes" operator="out" result="speck"/>
+        <feComponentTransfer in="speck"><feFuncA type="linear" slope="4" intercept="-0.8"/></feComponentTransfer>
       </filter>
-      <filter id="grunge-small" x="-2%" y="-10%" width="104%" height="120%" color-interpolation-filters="sRGB">
-        <feTurbulence type="fractalNoise" baseFrequency="1" numOctaves="3" seed="294" result="noise"/>
-        <feDisplacementMap in="SourceGraphic" in2="noise" scale="0.2" xChannelSelector="R" yChannelSelector="G"/>
+      <filter id="ink-small" x="-2%" y="-10%" width="104%" height="120%" color-interpolation-filters="sRGB">
+        <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7" result="n1"/>
+        <feDisplacementMap in="SourceGraphic" in2="n1" scale="0.6" xChannelSelector="R" yChannelSelector="G"/>
       </filter>
     </defs>
   </svg>
 
   <header class="site-header">
-    <a class="logo" href="/" aria-label="MECHA">
-      <img src="img/m-logo.svg" alt="MECHA" width="160" height="40">
-    </a>
+    <div class="logo">
+      <img src="img/m-logo.svg" alt="MECHA" width="80" height="20" draggable="false">
+    </div>
   </header>
 
   <main class="site-main">
-    <img class="hero-art" src="img/riso-bot.svg" alt="Illustrazione di una risograph con occhi e gambe che stampa un foglio" width="347" height="204">
+    <img class="hero-art" src="img/riso-bot.svg" alt="illustrazione riso print" width="347" height="204" draggable="false">
     <h1 class="title">WORK<br>IN<br>PROGRESS</h1>
   </main>
 
@@ -41,5 +49,10 @@
     <p>P. IVA 13400380963</p>
   </footer>
 
+  <script>
+    // Niente tasto destro / trascinamento sulle immagini
+    document.addEventListener('contextmenu', function (e) { if (e.target.tagName === 'IMG') e.preventDefault(); });
+    document.addEventListener('dragstart', function (e) { e.preventDefault(); });
+  </script>
 </body>
 </html>
