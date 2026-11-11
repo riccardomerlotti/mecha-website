@@ -42,7 +42,7 @@ body {
   justify-content: center;
 }
 .logo { display: block; line-height: 0; }
-.logo img { display: block; height: 40px; width: auto; }
+.logo img { display: block; height: 20px; width: auto; }
 
 /* Contenuto: occupa lo spazio tra header e footer, centrato */
 .site-main {
@@ -57,11 +57,16 @@ body {
 
 .hero-art {
   display: block;
-  width: min(347px, 86vw);
+  width: min(260px, 86vw);   /* desktop */
   height: auto;
 }
 
-/* Titolo: 32px, inclinato di 2° in senso antiorario (come Figma) + grana */
+/* Mobile */
+@media (max-width: 600px) {
+  .hero-art { width: 43vw; }
+}
+
+/* Titolo: 32px, inclinato di 2° in senso antiorario + grana */
 .title {
   margin: 0;
   font-size: clamp(1.5rem, 7vw, 2rem);
@@ -76,7 +81,7 @@ body {
 .site-footer {
   padding: 0 24px 48px;
   font-size: 0.75rem;
-  line-height: 2.2;
+  line-height: 2;
   filter: url(#ink-small);
 }
 .site-footer p { margin: 0; }
