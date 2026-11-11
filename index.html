@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MECHA</title>
+  <meta name="description" content="MECHA = Studio + Riso Print + Darkroom + Gunpla Collection. Based in Legnano (MI). WIP Website.">
+  <link rel="preload" href="fonts/michroma-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Filtri "grunge": il testo resta testo, selezionabile e indicizzabile -->
+  <svg class="svg-defs" aria-hidden="true" focusable="false">
+    <defs>
+      <filter id="grunge-title" x="-5%" y="-10%" width="110%" height="120%" color-interpolation-filters="sRGB">
+        <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" seed="294" result="noise"/>
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="0.9" xChannelSelector="R" yChannelSelector="G"/>
+      </filter>
+      <filter id="grunge-small" x="-2%" y="-10%" width="104%" height="120%" color-interpolation-filters="sRGB">
+        <feTurbulence type="fractalNoise" baseFrequency="1" numOctaves="3" seed="294" result="noise"/>
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="0.2" xChannelSelector="R" yChannelSelector="G"/>
+      </filter>
+    </defs>
+  </svg>
+
+  <header class="site-header">
+    <a class="logo" href="/" aria-label="MECHA">
+      <img src="img/m-logo.svg" alt="MECHA" width="160" height="40">
+    </a>
+  </header>
+
+  <main class="site-main">
+    <img class="hero-art" src="img/riso-bot.svg" alt="Illustrazione di una risograph con occhi e gambe che stampa un foglio" width="347" height="204">
+    <h1 class="title">WORK<br>IN<br>PROGRESS</h1>
+  </main>
+
+  <footer class="site-footer">
+    <p><a href="mailto:peace@mecha.biz">peace@mecha.biz</a></p>
+    <p>Via Morganti 3, 20025 Legnano (MI)</p>
+    <p>P. IVA 13400380963</p>
+  </footer>
+
+</body>
+</html>
